@@ -15,6 +15,8 @@ void ingresar_productos(char nombres[][50], float precios[],int cantidades[], in
     for (int i = 0; i < *num_productos; i++) {
         printf("Ingrese el nombre del producto %d: ", i + 1);
        fgets(nombres[i],50, stdin);
+       nombres[i][strcspn(nombres[i], "\n")] = '\0';
+
         printf("Ingrese el precio del producto %d: ", i + 1);
         scanf("%f", &precios[i]);
         printf("Ingrese la cantidad del producto %d: ",i +1);
