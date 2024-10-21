@@ -14,14 +14,27 @@ void ingresar_productos(char nombres[][50], float precios[],int cantidades[], in
     
     for (int i = 0; i < *num_productos; i++) {
         printf("Ingrese el nombre del producto %d: ", i + 1);
-       fgets(nombres[i],50, stdin);
-       nombres[i][strcspn(nombres[i], "\n")] = '\0';
+       (fgets(nombres[i], 50, stdin));
+       fflush (stdin);
+        nombres[i][strcspn(nombres[i], "\n")] = '\0';
 
         printf("Ingrese el precio del producto %d: ", i + 1);
-        scanf("%f", &precios[i]);
-        printf("Ingrese la cantidad del producto %d: ",i +1);
-        scanf("%d",&cantidades[i]);
-}
+        while (scanf("%f", &precios[i]) != 1) {
+            printf("Error: Ingrese un número válido para el precio del producto %d: ", i + 1);
+            while (getchar() != '\n');
+        }
+
+        while (getchar() != '\n');
+
+        printf("Ingrese la cantidad del producto %d: ", i + 1);
+        while (scanf("%d", &cantidades[i]) != 1 || cantidades[i] < 1) {
+            printf("Error: Ingrese un número válido para la cantidad del producto %d: ", i + 1);
+    
+            while (getchar() != '\n');
+        }
+
+        while (getchar() != '\n');
+    }
 }
 float calcular_total(float precios[], int cantidades [],int num_productos) {
     float total = 0.0;
